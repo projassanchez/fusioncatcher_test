@@ -3767,7 +3767,7 @@ if __name__ == "__main__":
                     job.add('--output_1',output_1_file,kind='output')
                     job.add('--output_2',output_2_file,kind='output')
                     job.add('--trim-n',options.mismatches+1,kind='parameter')
-                    job.add('--link','hard',kind='parameter',checksum='no')
+                    job.add('--link','soft',kind='parameter',checksum='no')
                     job.add('>',outdir('log_adapters_%d.txt' % (i,)),kind='parameter',checksum='no')
                     job.add('2>&1',kind='parameter',checksum='no')
                     job.run()
@@ -3793,7 +3793,7 @@ if __name__ == "__main__":
             job.add(_FC_+'remove-bad-illumina.py',kind='program')
             job.add('--input',in1,kind='input',temp_path=temp_flag)
             job.add('--output',ou3,kind='output')
-            job.add('--link','hard',kind='parameter',checksum='no')
+            job.add('--link','soft',kind='parameter',checksum='no')
             job.add('2>',outdir('log_bad_illumina_1_%d.txt' % (i,)),kind='parameter',checksum='no')
             job.run()
 
@@ -3823,7 +3823,7 @@ if __name__ == "__main__":
             job.add(_FC_+'remove-bad-illumina.py',kind='program')
             job.add('--input',in2,kind='input',temp_path=temp_flag)
             job.add('--output',ou4,kind='output')
-            job.add('--link','hard',kind='parameter',checksum='no')
+            job.add('--link','soft',kind='parameter',checksum='no')
             job.add('2>',outdir('log_bad_illumina_2_%d.txt' % (i,)),kind='parameter',checksum='no')
             job.run()
 
@@ -3860,7 +3860,7 @@ if __name__ == "__main__":
             job.add('--input_2',in2,kind='input',temp_path=temp_flag)
             job.add('--output_1',ou3,kind='output')
             job.add('--output_2',ou4,kind='output')
-            job.add('--link','hard',kind='parameter')
+            job.add('--link','soft',kind='parameter')
             job.add('--tmp_dir',tmp_dir,kind='parameter',checksum='no')
             job.run()
 
@@ -3948,14 +3948,14 @@ if __name__ == "__main__":
         job.add('--fail',kind='parameter')
         job.add('--input',input_file,kind='input',temp_path=temp_flag)
         job.add('--output',output_file,kind='output')
-        job.add('--link','hard',kind='parameter')
+        job.add('--link','soft',kind='parameter')
         job.run()
 
         # convert the quality scores to Illumina Solexa version 1.5 format
         infile = output_file
         output_file = outdir(os.path.basename(infile).replace('init-','init-phred-'))
         job.add(_FC_+'phred.py',kind='program')
-        job.add('--link','hard',kind='parameter')
+        job.add('--link','soft',kind='parameter')
         job.add('--input',infile,kind='input',temp_path=temp_flag)
         job.add('--output',output_file,kind='output')
         job.add('--input_type','auto-detect',kind='parameter')
